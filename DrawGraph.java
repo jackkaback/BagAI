@@ -13,7 +13,7 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class DrawGraph extends JPanel {
-   private static int MAX_SCORE = 0;
+   private static int maxScore = 0;
    private static final int PREF_W = 800;
    private static final int PREF_H = 650;
    private static final int BORDER_GAP = 30;
@@ -35,12 +35,12 @@ public class DrawGraph extends JPanel {
       g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
       double xScale = ((double) getWidth() - 2 * BORDER_GAP) / (scores.size() - 1);
-      double yScale = ((double) getHeight() - 2 * BORDER_GAP) / (MAX_SCORE - 1);
+      double yScale = ((double) getHeight() - 2 * BORDER_GAP) / (maxScore - 1);
 
       List<Point> graphPoints = new ArrayList<Point>();
       for (int i = 0; i < scores.size(); i++) {
          int x1 = (int) (i * xScale + BORDER_GAP);
-         int y1 = (int) ((MAX_SCORE - scores.get(i)) * yScale + BORDER_GAP);
+         int y1 = (int) ((maxScore - scores.get(i)) * yScale + BORDER_GAP);
          graphPoints.add(new Point(x1, y1));
       }
 
@@ -96,7 +96,7 @@ public class DrawGraph extends JPanel {
    public static void createAndShowGui(List<Double> scores, String title, double highest) {
       
       DrawGraph mainPanel = new DrawGraph(scores);
-      MAX_SCORE = (int)(highest + 0.5);
+      maxScore = (int)(highest + 0.5);
       
       JFrame frame = new JFrame(title);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -50,7 +50,7 @@ public class bags{
 
 
 	//makes the given bag randomly from the parent bags
-	private void breeding(boolean[] dad, boolean[] mom, boolean tamper){
+	private void breeding(boolean[] dad, boolean[] mom){
 		Random rand = new Random();
 
 		//iterates through and randomly picks from each parent
@@ -65,7 +65,7 @@ public class bags{
 			}
 
 			//Randomly mutates, 3% chance
-			if(rand.nextInt(100) <= 2 && tamper){
+			if(rand.nextInt(100) <= 2){
 				this.items[i] = !this.items[i];
 			}
 		}
@@ -78,7 +78,7 @@ public class bags{
 
 	//requires parent items to make a new bag
 	//initializes the bag
-	public bags(boolean[] dad, boolean[] mom, boolean tamper){
-		breeding(dad, mom, tamper);
+	public bags(boolean[] dad, boolean[] mom){
+		breeding(dad, mom);
 	}
 }

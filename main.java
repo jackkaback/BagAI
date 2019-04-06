@@ -26,7 +26,7 @@ public class main{
 
 		//initiallized the 1st generation of bags
 		for (int i = 0; i < baggins.length; i++){
-			baggins[i] = new bags(dad, mom, true);
+			baggins[i] = new bags(dad, mom);
 			sum += baggins[i].score;
 		}
 
@@ -36,9 +36,7 @@ public class main{
 
 		sorter(baggins);
 
-		for (int i = 0; i < baggins.length; i++){
-			System.out.println(i + " " + baggins[i].score);
-		}
+
 		System.out.println("Average: " + (sum/baggins.length));
 
 		//adds initial gen to the score keepers
@@ -65,7 +63,6 @@ public class main{
 			baggins = tempBaggins;
 
 			for (int i = 0; i < baggins.length; i++) {
-				System.out.println(i + " " + baggins[i].score);
 				sum += baggins[i].score;
 			}
 			double currAvg = (sum/baggins.length);
@@ -90,10 +87,11 @@ public class main{
 
 		//draw the graphs for each
 		DrawGraph minGraph = new DrawGraph(mins);
-		minGraph.createAndShowGui(mins, "Minimum", maxMin);
 		DrawGraph avgGraph = new DrawGraph(avg);
-		avgGraph.createAndShowGui(avg, "Average", maxAvg);
 		DrawGraph maxGraph = new DrawGraph(max);
+
+		avgGraph.createAndShowGui(avg, "Average", maxAvg);
+		minGraph.createAndShowGui(mins, "Minimum", maxMin);		
 		maxGraph.createAndShowGui(max, "Best", maxMax);
 
 	} 
@@ -101,7 +99,8 @@ public class main{
 	public static void propagate(bags[] bag1, bags[] bag2, double sum){
 
 		//saves a copy of the best for next gen
-		bag2[0] = new bags(bag1[0].items, bag1[0].items, false);
+		bag2[0] = bag1[0];
+		//new bags(bag1[0].items, bag1[0].items, false);
 
 
 		//itterates through the whole list and breeds assorted parents
@@ -118,7 +117,7 @@ public class main{
 				}
 			}
 
-			bag2[j] = new bags(bag1[j].items, bag1[randomIndex].items, true);
+			bag2[j] = new bags(bag1[j].items, bag1[randomIndex].items);
 
 		}
 	}
